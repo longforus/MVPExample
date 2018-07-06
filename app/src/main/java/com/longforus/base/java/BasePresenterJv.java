@@ -7,7 +7,7 @@ import android.support.annotation.CallSuper;
  * @author XQ Yang
  * @date 2017/12/7  9:32
  */
-public abstract class BasePresenterImpl<V extends IView,M extends IModel> {
+public abstract class BasePresenterJv<V extends IView,M extends IModel> {
     protected V mView;
     protected M mModel;
 

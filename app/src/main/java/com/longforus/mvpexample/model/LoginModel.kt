@@ -1,7 +1,10 @@
 package com.longforus.mvpexample.model
 
+import android.os.SystemClock
+import com.longforus.base.kotlin.BaseModelKt
 import com.longforus.mvpexample.contract.ILoginContract
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
 
 /**
  * Description :
@@ -10,9 +13,13 @@ import io.reactivex.disposables.CompositeDisposable
  * 								 - generate by MvpAutoCodePlus plugin.
  */
 
-class LoginModel : ILoginContract.Model {
-    override fun getContent(): String = "来自LoginModel"
-
-    override val mDisposablePool: CompositeDisposable by lazy { CompositeDisposable() }
+class LoginModel : BaseModelKt(), ILoginContract.Model {
+    override fun getContent() = Observable.create(ObservableOnSubscribe<String> { e ->
+        run {
+            SystemClock.sleep(500)
+            e.onNext("来自LoginModel")
+            e.onComplete()
+        }
+    })
 }
 

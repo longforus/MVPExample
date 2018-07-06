@@ -2,7 +2,7 @@ package com.longforus.mvpexample.presenter;
 
 import android.widget.Toast;
 import com.longforus.mvpexample.contract.IRegisterContract;
-import com.longforus.base.java.BasePresenterImpl;
+import com.longforus.base.java.BasePresenterJv;
 import com.longforus.mvpexample.model.RegisterModel;
 
 /**
@@ -13,7 +13,7 @@ import com.longforus.mvpexample.model.RegisterModel;
  * - generate by MvpAutoCodePlus plugin.
  */
 
-public class RegisterPresenter extends BasePresenterImpl<IRegisterContract.View,IRegisterContract.Model> implements IRegisterContract.Presenter {
+public class RegisterPresenter extends BasePresenterJv<IRegisterContract.View,IRegisterContract.Model> implements IRegisterContract.Presenter {
 
     @Override
     protected IRegisterContract.Model createModel() {

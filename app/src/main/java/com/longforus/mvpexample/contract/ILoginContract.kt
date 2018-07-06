@@ -3,6 +3,7 @@ package com.longforus.mvpexample.contract
 import com.longforus.base.kotlin.IModel
 import com.longforus.base.kotlin.IPresenter
 import com.longforus.base.kotlin.IView
+import io.reactivex.Observable
 
 /**
  * Description :
@@ -21,6 +22,6 @@ interface ILoginContract {
     }
 
     interface Model : IModel {
-        fun getContent(): String
+        fun getContent(): Observable<String>
     }
 }

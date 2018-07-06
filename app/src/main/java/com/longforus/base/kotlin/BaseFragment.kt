@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
  * 顶级Fragment
  */
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), ITopView {
     protected var mActivity: Activity? = null
     protected var mRootView: WeakReference<View>? = null
     private var mUnbinder: Unbinder? = null
@@ -66,7 +66,6 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    protected abstract fun inited()
 
     override fun onResume() {
         super.onResume()

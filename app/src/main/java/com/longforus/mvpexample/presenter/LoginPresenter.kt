@@ -1,8 +1,10 @@
 package com.longforus.mvpexample.presenter
 
 import android.widget.Toast
+import com.longforus.base.kotlin.BasePresenterKt
 import com.longforus.mvpexample.contract.ILoginContract
 import com.longforus.mvpexample.model.LoginModel
+import com.longforus.utils.mySubscribe
 
 /**
  * Description :
@@ -11,14 +13,15 @@ import com.longforus.mvpexample.model.LoginModel
  * 								 - generate by MvpAutoCodePlus plugin.
  */
 
-class LoginPresenter : ILoginContract.Presenter {
+class LoginPresenter : BasePresenterKt<ILoginContract.View>(), ILoginContract.Presenter {
+
+    override val mModel: ILoginContract.Model by lazy { LoginModel() }
+
     override fun onTvClick() {
-        Toast.makeText(getContext(), mModel?.getContent(), Toast.LENGTH_SHORT).show()
+        mModel.getContent().mySubscribe {
+            Toast.makeText(getContext(), it, Toast.LENGTH_SHORT).show()
+        }
         mView?.gotoRegister()
     }
-
-    override fun createModel(): ILoginContract.Model = LoginModel()
-    override var mModel: ILoginContract.Model? = null
-    override var mView: ILoginContract.View? = null
 }
 

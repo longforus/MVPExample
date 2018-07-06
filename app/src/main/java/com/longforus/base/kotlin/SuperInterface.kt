@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 interface ITopView : LifecycleOwner {
-    fun getContext(): Context
+    fun getContext(): Context?
     fun inited()
 }
 
@@ -36,29 +36,24 @@ interface IView<P : ITopPresenter> : ITopView {
     override fun inited() {
         mPresenter.attachView(this)
     }
-
-    fun finish(resultCode: Int = Activity.RESULT_CANCELED)
+//    fun finish(resultCode: Int = Activity.RESULT_CANCELED)
 }
 
 interface IPresenter<V : ITopView, M : IModel> : ITopPresenter {
     var mView: V?
-    var mModel: M?
+    val mModel: M
     fun getContext() = mView?.getContext()
 
     @Suppress("UNCHECKED_CAST")
     override fun attachView(view: ITopView) {
         mView = view as V
         mView?.lifecycle?.addObserver(this)
-        mModel = createModel()
     }
 
     override fun detachView() {
-        mModel?.onDetach()
-        mModel = null
+        mModel.onDetach()
         mView = null
     }
-
-    fun createModel(): M
 }
 
 interface IModel : ITopModel {
