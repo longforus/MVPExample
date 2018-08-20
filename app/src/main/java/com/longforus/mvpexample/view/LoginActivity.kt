@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 
 class LoginActivity : BaseMvpActivity(), ILoginContract.View {
+
     override fun gotoRegister() {
         startActivity(Intent(this, RegisterActivity::class.java))
     }

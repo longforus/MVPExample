@@ -37,7 +37,6 @@ abstract class BaseActivity : AppCompatActivity(), ITopView {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
 

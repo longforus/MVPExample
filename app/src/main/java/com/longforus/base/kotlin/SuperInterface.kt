@@ -5,7 +5,6 @@ package com.longforus.base.kotlin
  * @author  XQ Yang
  * @date 2018/7/5  11:45
  */
-import android.app.Activity
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner

@@ -1,8 +1,9 @@
 package com.longforus.mvpexample.view;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 import com.longforus.base.java.BaseMvpActivity;
 import com.longforus.mvpexample.R;
 import com.longforus.mvpexample.contract.IRegisterContract;
@@ -36,12 +37,19 @@ public class RegisterActivity extends BaseMvpActivity<IRegisterContract.View,IRe
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-        TextView tv = findViewById(R.id.tv);
+        Button tv = findViewById(R.id.tv);
         tv.setText("register");
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mPresenter.onTvClick();
+            }
+        });
+
+        findViewById(R.id.btn_show_fragment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fl, Fragment.instantiate(RegisterActivity.this, TestFragment.class.getName())).commit();
             }
         });
     }

@@ -2,7 +2,6 @@ package com.longforus.base.java;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
-
 import com.longforus.base.kotlin.BaseFragment;
 
 /**
@@ -22,10 +21,12 @@ public abstract class BaseMvpFragment<V extends IView,P extends IPresenter<V>> e
         setPresenter(null);
     }
 
+
     @CallSuper
     @Override
-    protected void initListener() {
-        mPresenter.attachView(getMvpView());//在这个时候才attach view是因为这个时候view的初始化已经基本完成,在Presenter中调用view的域也不会为空
+    public void inited() {
+        //在这个时候才attach view是因为这个时候view的初始化已经基本完成,在Presenter中调用view的域也不会为空
+        mPresenter.attachView(getMvpView());
     }
 
     @CallSuper
