@@ -32,7 +32,8 @@ class TestFragment : BaseMvpFragment<ITestContract.View, ITestContract.Presenter
 
     }
 
-    override val layoutId: Int = R.layout.fragment_test
+
+    override fun getLayoutId(): Int = R.layout.fragment_test
 
 }
 

@@ -8,8 +8,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.longforus.utils.LogUtils
 import java.lang.ref.WeakReference
 
@@ -20,11 +18,10 @@ import java.lang.ref.WeakReference
 abstract class BaseFragment : Fragment(), ITopView {
     protected var mActivity: Activity? = null
     protected var mRootView: WeakReference<View>? = null
-    private var mUnbinder: Unbinder? = null
     private var inited = false
 
-    @get:LayoutRes
-    protected abstract val layoutId: Int
+    @LayoutRes
+    abstract fun getLayoutId(): Int
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -43,14 +40,13 @@ abstract class BaseFragment : Fragment(), ITopView {
         var mFragmentView: View? = null
         if (mRootView == null || mRootView!!.get() == null) {
             inited = false
-            mFragmentView = inflater.inflate(layoutId, container, false)
+            mFragmentView = inflater.inflate(getLayoutId(), container, false)
             mRootView = WeakReference(mFragmentView)
         } else {
             val parent = mRootView!!.get()?.parent as ViewGroup?
             parent?.removeView(mRootView!!.get())
             mFragmentView = mRootView!!.get()
         }
-        mUnbinder = ButterKnife.bind(this, mFragmentView!!)
         return mRootView!!.get()
     }
 
@@ -79,10 +75,6 @@ abstract class BaseFragment : Fragment(), ITopView {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mUnbinder != null) {
-            mUnbinder!!.unbind()
-            mUnbinder = null
-        }
         mActivity = null
     }
 

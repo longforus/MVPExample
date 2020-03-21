@@ -31,9 +31,10 @@ public class RegisterActivity extends BaseMvpActivity<IRegisterContract.View,IRe
     }
 
     @Override
-    protected int getContentViewId() {
+    public int getLayoutId() {
         return R.layout.activity_main;
     }
+
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {

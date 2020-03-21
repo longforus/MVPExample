@@ -21,7 +21,8 @@ class LoginActivity : BaseMvpActivity(), ILoginContract.View {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
 
-    override val contentViewId: Int = R.layout.activity_main
+
+    override fun getLayoutId(): Int  = R.layout.activity_main
     override fun initListener() {
 
     }

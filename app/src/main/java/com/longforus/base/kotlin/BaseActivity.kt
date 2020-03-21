@@ -3,8 +3,8 @@ package com.longforus.base.kotlin
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
-import butterknife.ButterKnife
 import com.longforus.utils.ActivityStack
 import com.longforus.utils.LogUtils
 
@@ -15,7 +15,9 @@ import com.longforus.utils.LogUtils
 abstract class BaseActivity : AppCompatActivity(), ITopView {
     protected lateinit var mActivity: Activity
 
-    protected abstract val contentViewId: Int
+
+    @LayoutRes
+    abstract fun getLayoutId(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +33,7 @@ abstract class BaseActivity : AppCompatActivity(), ITopView {
      * 基础初始化 绑定黄油刀,  使用binding的复写 不绑
      */
     protected open fun baseInit(savedInstanceState: Bundle?) {
-        setContentView(contentViewId)
-        try {
-            ButterKnife.bind(this)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        setContentView(getLayoutId())
     }
 
 
